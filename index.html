@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Own Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-mark">✎</span>
+                <div>
+                    <p class="eyebrow">TEXT STUDIO</p>
+                    <h1 id="heading">Your Own Editor</h1>
+                </div>
+            </div>
+        </header>
+
+        <p class="tagline">Write. Style. Export.</p>
+
+        <main class="workspace">
+            <section class="canvas-panel">
+                <div id="box" contenteditable="true" aria-label="Text editor">
+                    Type your text here...
+                </div>
+            </section>
+
+            <aside class="controls">
+                <div class="control-group">
+                    <h2>Background</h2>
+                    <div class="swatches">
+                        <button class="swatch bg-swatch coral" data-bg="#ff8a80" type="button" aria-label="Coral background"></button>
+                        <button class="swatch bg-swatch mint" data-bg="#9ae6b4" type="button" aria-label="Mint background"></button>
+                        <button class="swatch bg-swatch sky" data-bg="#7dd3fc" type="button" aria-label="Sky background"></button>
+                        <button class="swatch bg-swatch lilac" data-bg="#d8b4fe" type="button" aria-label="Lilac background"></button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h2>Text color</h2>
+                    <div class="swatches">
+                        <button class="swatch text-swatch red" data-color="#e63946" type="button" aria-label="Red text"></button>
+                        <button class="swatch text-swatch green" data-color="#2a9d8f" type="button" aria-label="Green text"></button>
+                        <button class="swatch text-swatch blue" data-color="#1d4ed8" type="button" aria-label="Blue text"></button>
+                        <button class="swatch text-swatch black" data-color="#111827" type="button" aria-label="Black text"></button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h2>Font style</h2>
+                    <div class="font-options">
+                        <button class="font-btn active" type="button" data-font="Georgia, serif">Classic</button>
+                        <button class="font-btn" type="button" data-font="'Trebuchet MS', sans-serif">Modern</button>
+                        <button class="font-btn" type="button" data-font="'Courier New', monospace">Mono</button>
+                        <button class="font-btn" type="button" data-font="'Segoe Print', 'Bradley Hand', cursive">Script</button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        document.querySelectorAll(".bg-swatch").forEach((button) => {
+            button.addEventListener("click", () => {
+                box.style.backgroundColor = button.dataset.bg;
+            });
+        });
+
+        document.querySelectorAll(".text-swatch").forEach((button) => {
+            button.addEventListener("click", () => {
+                box.style.color = button.dataset.color;
+            });
+        });
+
+        document.querySelectorAll(".font-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                box.style.fontFamily = button.dataset.font;
+                document.querySelectorAll(".font-btn").forEach((btn) => btn.classList.remove("active"));
+                button.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
